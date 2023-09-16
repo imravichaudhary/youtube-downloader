@@ -43,6 +43,16 @@ Simple python script to download youtube audio, video and playlist.
 
 - You can modify the script to download video. Code is commented in both files.
 
+- To convert mp4 audio files to mp3 audio files
+
+    - ```
+      python -m pip install moviepy
+      ```
+    - ```
+      python ./convert-audio-mp4-to-mp3.py
+      ```
+      Script will ask for the folder name where mp4 files are placed.
+
 - If you are facing issue similar to 
 `pytube.exceptions.RegexMatchError: __init__: could not find match for ^\\w+\\W` then find the pytube package in your system. 
 

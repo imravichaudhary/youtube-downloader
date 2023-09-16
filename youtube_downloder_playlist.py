@@ -28,10 +28,22 @@ if not os.path.exists(final_directory):
 # Download audio
 # yt.streams.filter(only_audio=True).first().download()
 
+# list to store files name
+filenames = next(walk(final_directory), (None, None, []))[2]  # [] if no file
+# remove extension
+filenames=[sub[: -4] for sub in filenames]
+
 for index, y in enumerate(yt.videos):
     # Download audio
-    print(f'downloading..{index+1}... {y.title}')
-    y.streams.filter(only_audio=True).first().download(final_directory)
+
+    if (y.title in filenames):
+        print("directory already contain " + y.title + ". Skip downloading....")
+    else:
+        print(f'downloading..{index+1}... {y.title}')
+        try:
+            y.streams.filter(only_audio=True).first().download(final_directory)
+        except Exception as ex:
+            print(f'exception occured while downloading song: {y.title}. ', ex)
 
 print("")
 print("Download Successful !!")
